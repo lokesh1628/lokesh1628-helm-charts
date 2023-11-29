@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Student Survey Form version 1</title>
+<style>
+header{
+    background-color: #621da3;
+    color:#c4a9a9;
+    padding: 5px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'sans-serif';
+}
+div{
+    height: 100px;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    margin: 0 auto;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+.required::after{
+    content: "*";
+    color:rgb(165, 42, 42);
+}
+.form-group{
+    display:block;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.center{
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #1da34a;
+    color: #141111;
+    font-size: 20px;
+}
+
+.first{
+    justify-content: left;
+    padding:10px 20px 10px 20px;
+    margin: 0 auto;
+}
+
+.five{
+height: 25%;
+width: 100%;
+}
+
+#liking{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50%;
+    padding: 10px;
+    margin: 0 auto;
+    align-content: center;
+    justify-content: center;
+}
+
+#like{
+    display: block;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin-top: -10px;
+}
+.float{
+    background-color: #3dc269;
+    border:#111809;
+    border-radius: 5px;
+    font-size: large;
+    height: 100%;
+    width: 100%;
+}
+.float:hover{
+    background-color: #8b388b;
+    height: 100%;
+    width: 100%;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+    function validate(){
+        var raffle = document.getElementById("raffle").value;
+        var raffleArray = raffle.split(",");
+        if(raffleArray.length != 10){
+            alert("Please enter 10 comma seperated numbers");
+            return false;
+        }
+        for(var i=0;i<raffleArray.length;i++){
+            if(raffleArray[i] < 1 || raffleArray[i] > 100){
+                alert("Please enter 10 comma seperated numbers ranging 1 to 100");
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+</head>
+<body>
+    <header>
+        <h1>Student Survey Form</h1>
+    </header>
+    <form class="form-group" action="/api/uploadData" method="post">
+        <div class="center first">
+            <label for="name" class="required">First Name:</label>
+            <input class="five" type="text" id="firstname" name="firstName" placeholder="Enter your First Name" required>
+        </div>
+        <div class="center first">
+            <label for="lastname" class="required">Last Name:</label>
+            <input class="five" type="text" id="lastname" name="lastName" placeholder="Enter your Last Name" required>
+        </div>
+        <div class="center first">
+             <label for="Street" class="required">Street Address:</label>
+             <input class="five" type="text" id="Street" name="streetAddress" placeholder="Enter your Street Address"required>
+        </div>
+        <div class="center first">
+            <label for="City" class="required">City:</label>
+            <input class="five" type="text" id="City" name="city" placeholder="Enter your City" required>
+        </div>
+        <div class="center first">
+            <label for="State" class="required">State:</label>
+            <input class="five" type="text" id="State" name="state" placeholder="Enter your State" required>
+        </div>
+        <div class="center first">
+            <label for="Zip" class="required">Zip:</label>
+            <input class="five" type="number" id="Zip" name="zip" placeholder="Enter your Zip" required>
+        </div>
+        <div class="center first">
+            <label for="Telephone" class="required">Telephone:</label>
+            <input class="five" type="number" id="Telephone" name="telephone" placeholder="Enter your Telephone" required>
+        </div>
+        <div class="center first">
+            <label for="Email" class="required">Email:</label>
+            <input class="five" type="text" id="Email" name="email" placeholder="Enter your Email" required>
+        </div>
+        <div class="center first">
+            <label for="date" class="required">Date of Survey:</label><br>
+            <input class="five" type="date" id="date" name="dateOfSurvey" placeholder="Enter your Date of Survey" required>
+        </div>
+
+        <div class="center first">
+            <label for="liked">What they like most about the campus?</label><br>
+            <input type="checkbox" id="students" name="likedMost" value="students">
+            <label for="students">Students</label><br>
+            <input type="checkbox" id="location" name="likedMost" value="location">
+            <label for="location">Location</label><br>
+            <input type="checkbox" id="campus" name="likedMost" value="campus">
+            <label for="campus">Campus</label><br>
+            <input type="checkbox" id="Dormrooms" name="likedMost" value="Dormrooms">
+            <label for="Dormrooms">Dormrooms</label><br>
+            <input type="checkbox" id="atmosphere" name="likedMost" value="atmosphere">
+            <label for="atmosphere">Atmosphere</label><br>
+            <input type="checkbox" id="sports" name="likedMost" value="sports">
+            <label for="sports">Sports</label><br>
+        </div>
+        <div class="center first">
+            <label for="intrested">How they became intrested in the University?</label><br>
+            <input type="radio" id="friends" name="interestedBy" value="friends">
+            <label for="friends">Friends</label><br>
+            <input for="Television" type="radio" id="Television" name="interestedBy" value="Television">
+            <label for="Television">Television</label><br>
+            <input type="radio" id="Internet" name="interestedBy" value="Internet">
+            <label for="Internet">Internet</label><br>
+            <input type="radio" id="other" name="interestedBy" value="other">
+            <label for="other">Other</label><br>
+        </div>
+        <div class="center first">
+            <label for="liking">Likelihood of him/her recommending this school 
+                to other prospective students:</label><br>
+            <select id="liking" name="likelihood">
+                <option value="1">Unlikely</option>
+                <option value="2">likely</option>
+                <option value="3" selected>Very likely</option>
+            </select>
+        </div>
+        <div class="container">
+            <input type="submit" class="button float" value="Submit"><br>
+            <button type="cancel float" class="button">Cancel</button>
+        </div>
+    </form>
+</body>
+</html>
